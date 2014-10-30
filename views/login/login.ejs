@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+<div class="container full">
+
+	<p>
+		<% if(message.length >0) { %>
+			<div class = "alert alert-danger">
+			<%= message %>
+			</div>
+		<% } %>
+	</p>
+
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <h1>Log in</h1>
+			
+			<form action="/login" method="POST">
+			<p>
+				<label for="user">Username:</label><input type="text" name="username" id="username" autofocus value = <%= username %>>
+			</p><p>
+				<label for="pass">Password:</label><input type="password" name="password" id="pass">
+			</p>
+			<input type="submit" value="Log In" class="btn btn-primary">
+		</form>
+
+		<br>
+		Don't have an account? <a href="/signup">Create one here.</a>
+
+  </div>
+</div>
+
+  
+  <!-- /.row -->
+
+
+
+
+
+
+<% include ../partials/footer %>

@@ -1,0 +1,74 @@
+<% include partials/header %>
+
+<style>
+	#createdImage {
+    /*border: 11px solid red;*/
+    z-index: 99999;
+    /*position: absolute;*/
+}
+</style>
+
+<div id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          <!-- sidebar header -->
+        </a>
+		  </li>
+		  <li>
+		    <a href="/">Create new</a>
+		  </li>
+		  <li>
+		    <a href="/tada">View all</a>
+		  </li>
+		  <li>
+		    <a href="/logout">Log out</a>
+		</ul>
+  </div>
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+
+<div class="page-header">
+<h1>Voila</h1>
+</div>
+
+
+<% if (thisimg === null) { %> 
+	Sorry! Image not found.
+<% } else { %>
+
+<% var background = thisimg.background %>
+<% var animal = thisimg.animal %>
+<% var itemone = thisimg.itemone %>
+<% var itemtwo = thisimg.itemtwo %>
+<% var img = thisimg.img %>
+
+<div id="jpger">
+	<div class="result">
+		<img crossOrigin = "annonymous" src="<%= background %>" id="background">
+		<img crossOrigin = "annonymous" src="<%= img %>" id="mainImg">
+		<img crossOrigin = "annonymous" src="<%= animal %>" id="animal">
+		<img crossOrigin = "annonymous" src="<%= itemone %>" id="itemone">
+		<img crossOrigin = "annonymous" src="<%= itemtwo %>" id="itemtwo">
+	</div>
+</div>
+<% } %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+
+<% include partials/footer %>

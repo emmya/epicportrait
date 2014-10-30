@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+
+<div class="container full">
+  <div class="row">
+     <div class="col-md-12 col-sm-12">
+      
+      <h1>Sign up</h1>
+      
+      <form action="/signup" method="POST">
+				<p>
+					<label for="user">Username:</label><input type="text" name="username" id="user" autofocus value=<%= username %> >
+				</p><p>
+					<label for="pass">Password:</label><input type="password" name="password" id="pass">
+				</p>
+				<input type="submit" value="Sign up" class="btn btn-primary">
+			</form>
+			
+			<br>
+			Already have an account? <a href="/login">Log in</a>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+
+
+<% include ../partials/footer %>

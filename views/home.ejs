@@ -1,0 +1,110 @@
+<% include partials/header %>
+
+
+
+<div id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+         
+        </a>
+		  </li>
+		  <li>
+		    <a href="/">Create new</a>
+		  </li>
+		  <li>
+		    <a href="/tada">View all</a>
+		  </li>
+		  <li>
+		    <a href="/logout">Log out</a>
+		</ul>
+  </div>
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+
+      <h1>Generate new image</h1>
+<form action="/userimage" method="post" enctype="multipart/form-data" class="form-group">
+<div id="accordion">
+ 
+
+		<h3>Choose a background</h3>
+		<div id="pt1">
+		<input type="radio" name="backgroundpick" value="sunset" selected="true">Sunset<br>
+		<input type="radio" name="backgroundpick" value="sky">Sky<br>
+		<input type="radio" name="backgroundpick" value="space1">This Space<br>
+		<input type="radio" name="backgroundpick" value="space2">That Space<br>
+		</div>
+
+		<h3>Choose a spirit animal</h3>
+		<div id="pt2">
+		<input type="radio" name="animalpick" value="doge">Dog<br>
+		<input type="radio" name="animalpick" value="lion">Lion<br>
+		<input type="radio" name="animalpick" value="cat">Cat<br>
+		<input type="radio" name="animalpick" value="horse">Horse<br>
+		<input type="radio" name="animalpick" value="ron">Ron Swanson<br>
+		</div>
+
+		<h3>Choose a thing</h3>
+		<div id="pt3">
+		<input type="radio" name="itemone" value="bacon">Bacon<br>
+		<input type="radio" name="itemone" value="cards">Cards<br>
+		<input type="radio" name="itemone" value="rainbow">Rainbow<br>
+		</div>
+
+		<h3>Now another thing</h3>
+		<div id="pt4">
+		<input type="radio" name="itemtwo" value="buzz">Buzz Lightyear<br>
+		<input type="radio" name="itemtwo" value="football">Football<br>
+		<input type="radio" name="itemtwo" value="martini">Martini<br>
+		</div>
+
+		<h3>Get snazzy</h3>
+		<div id="pt5">
+		Upload a picture. For best results, use your most fabulous headshot. <br>
+		Bonus if the background is transparent. Make that happen <a href="https://clippingmagic.com/">here.</a>
+		<input type="file" name="displayImage" class="upload">
+		<input type="submit" value="Generate Image" class="btn btn-primary generate">
+		</div>
+</div>
+</form> 
+
+<!-- 
+      <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+      
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
+
+
+<% include partials/footer %>
