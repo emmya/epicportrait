@@ -340,6 +340,5 @@ function getItem(entry) {
 	}
 }
 
-app.listen(3000, function(){
-	console.log("Running on port 3000");
-});
+app.listen(process.env.PORT || 300);
+
