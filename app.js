@@ -174,7 +174,7 @@ app.post('/userimage', function(req, res, next) {
     	animal: animal,
  			itemone: itemone,
  			itemtwo: itemtwo,
- 			img: "http://i.imgur.com/gahqY6S.png"
+ 			img: "http://i.imgur.com/oY9WlIJ.png"
   		}).done(function(err, image) {
    			req.user.addPhoto(image).done(function(err) {
    				console.log("? used. Add successful.");
