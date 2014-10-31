@@ -3,15 +3,17 @@ var express = require("express");
 	app = express(),
 	db = require("./models/index.js"),
 	passport = require("passport"),
-    passportLocal = require("passport-local"),
-    cookieParser = require("cookie-parser"),
-    session = require("cookie-session"),
-    flash = require("connect-flash");
-    methodOverride = require('method-override'),
-    fs = require('fs'),
-    cors = require("cors");
-    imgur = require('imgur-node-api'),
+  passportLocal = require("passport-local"),
+  cookieParser = require("cookie-parser"),
+  session = require("cookie-session"),
+  flash = require("connect-flash"),
+  methodOverride = require('method-override'),
+  fs = require('fs'),
+  cors = require("cors"),
+  imgur = require('imgur-node-api'),
+  imgur2 = require('imgur'),
 	path = require('path'),
+	multer  = require('multer'),
 	busboy = require('connect-busboy');
 
 app.set('view engine', 'ejs');
@@ -21,6 +23,7 @@ app.use(methodOverride('_method'));
 app.use(busboy());
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
+app.use(multer({ dest: './img/'}));
 
 //set up session
 app.use(session({
@@ -162,40 +165,34 @@ app.post('/userimage', function(req, res, next) {
   	itemtwo = "http://i.imgur.com/gahqY6S.png";
   }
 
-  //Image upload
-  req.busboy.on('file', function (fieldname, file, filename) {
-  	if (filename != "") {
-    	console.log("Uploading: " + filename);
-        //Path where image will be uploaded
-        fstream = fs.createWriteStream(__dirname + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {    
-          console.log("Upload Finished of " + filename); 
-          imgur.setClientID("4d214ab434e821a");
-					imgur.upload(path.join(__dirname, filename),function(err, response){
-    			//console.log(response); //logs the imgur data
-    				console.log("link is "+response.data.link);
-    				imglink = response.data.link;
-    				console.log("data ready.");
-    			//creating new image object
-    			db.Photo.create({
-    				background: background,
-    				animal: animal,
-    				itemone: itemone,
-    				itemtwo: itemtwo,
-    				img: imglink
-    			}).done(function(err, image) {
-    				req.user.addPhoto(image).done(function(err) {
-    					console.log("add successful.");
-    					var userid = req.user.id;
-    					var imgid = image.id;
-    					console.log("User id: "+userid + " img id: "+imgid);
-    					res.redirect("/tada/"+imgid);
-    				});
-    			});
-				});
-			});
+  console.dir(req.files);
+  console.dir("Uploading "+req.files.displayImage.originalname);
 
+  if (req.files.displayImageoriginalname !== "") {
+		imgur2.setClientId("4d214ab434e821a");
+		imgur2.getClientId();
+		imgur2.saveClientId().done(function(err) {
+			console.log('saved');
+		});
+		imgur2.uploadFile(__dirname + "/" + req.files.displayImage.path)
+			.done(function(json) {
+				console.log("LINK IS "+json.data.link);
+				db.Photo.create({
+  				background: background,
+  				animal: animal,
+  				itemone: itemone,
+  				itemtwo: itemtwo,
+  				img: json.data.link
+  			}).done(function(err, image) {
+  				req.user.addPhoto(image).done(function(err) {
+  					console.log("add successful.");
+  					var userid = req.user.id;
+  					var imgid = image.id;
+  					console.log("User id: "+userid + " img id: "+imgid);
+  					res.redirect("/tada/"+imgid);
+  				});
+  			});
+			});
     //If no image was uploaded
     } else {
     db.Photo.create({
@@ -215,9 +212,71 @@ app.post('/userimage', function(req, res, next) {
     	});
     }
   }); //closes image upload
-}); //variables
+ //variables
+  
+  //Image upload
+  // req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+  // 	if (filename != "") {
+  //   	console.log("UPLOADING: " + filename);
+  //   	console.log('File [' + fieldname +']: filename:' + filename + ', encoding:' + 
+  //            encoding + ', MIME type:'+ mimetype);
+  //       //Path where image will be uploaded
+  //       fstream = fs.createWriteStream(__dirname + '/img/' + filename);
+  //       file.pipe(fstream);
+  //       fstream.on('close', function () {    
+  //         console.log("Upload Finished of " + filename); 
 
-//All photos page. Passes array 'images' and 'allImages' to page.
+
+
+  //         imgur.setClientID("4d214ab434e821a");
+		// 			imgur.upload(path.join(__dirname, filename),function(err, response){
+
+
+  //   			//console.log(response); //logs the imgur data
+  //   				console.log("link is "+response.data.link);
+  //   				imglink = response.data.link;
+  //   				console.log("data ready.");
+  //   			//creating new image object
+  //   			db.Photo.create({
+  //   				background: background,
+  //   				animal: animal,
+  //   				itemone: itemone,
+  //   				itemtwo: itemtwo,
+  //   				img: imglink
+  //   			}).done(function(err, image) {
+  //   				req.user.addPhoto(image).done(function(err) {
+  //   					console.log("add successful.");
+  //   					var userid = req.user.id;
+  //   					var imgid = image.id;
+  //   					console.log("User id: "+userid + " img id: "+imgid);
+  //   					res.redirect("/tada/"+imgid);
+  //   				});
+  //   			});
+		// 		});
+		// 	});
+
+  //   //If no image was uploaded
+  //   } else {
+  //   db.Photo.create({
+ 	// 	background: background,
+  //   	animal: animal,
+ 	// 		itemone: itemone,
+ 	// 		itemtwo: itemtwo,
+ 	// 		img: "http://i.imgur.com/gahqY6S.png"
+  // 		}).done(function(err, image) {
+  //  			req.user.addPhoto(image).done(function(err) {
+  //  				console.log("? used. Add successful.");
+  //  				var userid = req.user.id;
+  //  				var imgid = image.id;
+  // 				console.log("User id: "+userid + " img id: "+imgid);
+  //  				res.redirect("/tada/"+imgid);
+  //   		});
+  //   	});
+  //   }
+  // }); //closes image upload
+//variables
+
+//All photos page. Passes array 'images' and 'recentImages' to page.
 app.get('/tada', function(req,res){
 	if (req.user) {
 		//getting all images that aren't the users
@@ -239,12 +298,6 @@ app.get('/tada', function(req,res){
 			var otherUsers = [];
 			for (var i=len-1; i>len-5; i--) {
 				console.log("user in other ims is "+otherIms[i].UserId);
-				//=====attempting to get the user of the other images====
-				// db.User.find(otherIms[i].UserId).done(function(err, thisuser) {
-				// 		console.log("JJDJSJ"+thisuser.username);
-				// 		otherUsers.push(thisuser.username);
-				// 		console.log("???"+otherUsers[0]);
-				// 	});
 				recentImages.push(otherIms[i]);
 			}
 
@@ -253,7 +306,6 @@ app.get('/tada', function(req,res){
 				res.render("tada", {
 					images: images,
 					recentImages: recentImages,
-					recentUsers: otherUsers
 				});
 			});
 		});
@@ -383,6 +435,5 @@ function getItem(entry) {
 	}
 }
 
-// app.listen(3000);
-app.listen(process.env.PORT || 300);
+app.listen(process.env.PORT || 3000);
 
