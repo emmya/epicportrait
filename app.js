@@ -13,14 +13,12 @@ var express = require("express");
   imgur = require('imgur-node-api'),
   imgur2 = require('imgur'),
 	path = require('path'),
-	multer  = require('multer'),
-	busboy = require('connect-busboy');
+	multer  = require('multer');
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
-app.use(busboy());
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(multer({ dest: './img/'}));
@@ -136,39 +134,15 @@ app.get('/logout', function(req,res) {
 //CREATE NEW IMAGE
 app.post('/userimage', function(req, res, next) {
 	var fstream;
-	var background = "";
-	var animal = "";
-	var itemone = "";
-	var itemtwo = "";
-  req.pipe(req.busboy);
 
-  //getting radio values
-  req.busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-    console.log('Field [' + fieldname + ']: value: ' + val);
-    if (fieldname === "backgroundpick") { background = getBackground(val); }
-    if (fieldname === "animalpick") { animal = getAnimal(val); }
-    if (fieldname === "itemone") { itemone = getItem(val); }
-    if (fieldname === "itemtwo") { itemtwo = getItem(val); }
-  });
+ 	var background = getBackground(req.body.backgroundpick) || "http://i.imgur.com/2YhTlKD.jpg";
+	var animal = getAnimal(req.body.animalpick) || "http://i.imgur.com/gahqY6S.png";
+  var itemone = getItem(req.body.itemone) || "http://i.imgur.com/gahqY6S.png";
+  var itemtwo = getItem(req.body.itemtwo) || "http://i.imgur.com/gahqY6S.png";
 
-  //checks to see if radios were filled
-  if (background === "") {
-  	background = "http://i.imgur.com/2YhTlKD.jpg";
-  }
-  if (animal === "") {
-  	animal = "http://i.imgur.com/gahqY6S.png";
-  }
-  if (itemone === "") {
-  	itemone = "http://i.imgur.com/gahqY6S.png";
-  }
-  if (itemtwo === "") {
-  	itemtwo = "http://i.imgur.com/gahqY6S.png";
-  }
-
-  console.dir(req.files);
-  console.dir("Uploading "+req.files.displayImage.originalname);
-
-  if (req.files.displayImageoriginalname !== "") {
+  if (req.files.displayImage !== undefined) {
+  	console.dir(req.files);
+  	console.dir("Uploading "+req.files.displayImage.originalname);
 		imgur2.setClientId("4d214ab434e821a");
 		imgur2.getClientId();
 		imgur2.saveClientId().done(function(err) {
@@ -212,69 +186,7 @@ app.post('/userimage', function(req, res, next) {
     	});
     }
   }); //closes image upload
- //variables
-  
-  //Image upload
-  // req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-  // 	if (filename != "") {
-  //   	console.log("UPLOADING: " + filename);
-  //   	console.log('File [' + fieldname +']: filename:' + filename + ', encoding:' + 
-  //            encoding + ', MIME type:'+ mimetype);
-  //       //Path where image will be uploaded
-  //       fstream = fs.createWriteStream(__dirname + '/img/' + filename);
-  //       file.pipe(fstream);
-  //       fstream.on('close', function () {    
-  //         console.log("Upload Finished of " + filename); 
 
-
-
-  //         imgur.setClientID("4d214ab434e821a");
-		// 			imgur.upload(path.join(__dirname, filename),function(err, response){
-
-
-  //   			//console.log(response); //logs the imgur data
-  //   				console.log("link is "+response.data.link);
-  //   				imglink = response.data.link;
-  //   				console.log("data ready.");
-  //   			//creating new image object
-  //   			db.Photo.create({
-  //   				background: background,
-  //   				animal: animal,
-  //   				itemone: itemone,
-  //   				itemtwo: itemtwo,
-  //   				img: imglink
-  //   			}).done(function(err, image) {
-  //   				req.user.addPhoto(image).done(function(err) {
-  //   					console.log("add successful.");
-  //   					var userid = req.user.id;
-  //   					var imgid = image.id;
-  //   					console.log("User id: "+userid + " img id: "+imgid);
-  //   					res.redirect("/tada/"+imgid);
-  //   				});
-  //   			});
-		// 		});
-		// 	});
-
-  //   //If no image was uploaded
-  //   } else {
-  //   db.Photo.create({
- 	// 	background: background,
-  //   	animal: animal,
- 	// 		itemone: itemone,
- 	// 		itemtwo: itemtwo,
- 	// 		img: "http://i.imgur.com/gahqY6S.png"
-  // 		}).done(function(err, image) {
-  //  			req.user.addPhoto(image).done(function(err) {
-  //  				console.log("? used. Add successful.");
-  //  				var userid = req.user.id;
-  //  				var imgid = image.id;
-  // 				console.log("User id: "+userid + " img id: "+imgid);
-  //  				res.redirect("/tada/"+imgid);
-  //   		});
-  //   	});
-  //   }
-  // }); //closes image upload
-//variables
 
 //All photos page. Passes array 'images' and 'recentImages' to page.
 app.get('/tada', function(req,res){
