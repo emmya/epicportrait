@@ -8,6 +8,16 @@
 }
 </style>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=565051076960106&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div id="wrapper">
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
@@ -40,11 +50,17 @@
 <h1>Voila</h1>
 </div>
 
-<a href="/save/<%= thisimg.id %>">Export</a>
-
 <% if (thisimg === null) { %> 
 	Sorry! Image not found.
 <% } else { %>
+
+<a href="http://www.facebook.com/share.php?u=http://epicportrait.herokuapp.com">
+	<img src="http://i.imgur.com/R2xZymZ.png" class="sharebtn">
+</a>
+
+<div id="share" id="move"><img src="http://i.imgur.com/zAHxltg.png" class="sharebtn"></div>
+
+<div id="move"><img src="http://i.imgur.com/1BXvs44.png" class="sharebtn"></div>
 
 <% var background = thisimg.background %>
 <% var animal = thisimg.animal %>
@@ -52,21 +68,18 @@
 <% var itemtwo = thisimg.itemtwo %>
 <% var img = thisimg.img %>
 
-<div id="">
-	<div class="result">
-		<img crossOrigin = "annonymous" src="<%= background %>" id="background">
-		<img crossOrigin = "annonymous" src="<%= img %>" id="mainImg">
-		<img crossOrigin = "annonymous" src="<%= animal %>" id="animal">
-		<img crossOrigin = "annonymous" src="<%= itemone %>" id="itemone">
-		<img crossOrigin = "annonymous" src="<%= itemtwo %>" id="itemtwo">
+<div id="jpger">
+	<div class="result" id="result">
+		<img crossOrigin = "annonymous" src="<%= background %>" id="background" class="draggable">
+		<img crossOrigin = "annonymous" src="<%= img %>" id="mainImg" class="draggable">
+		<img crossOrigin = "annonymous" src="<%= animal %>" id="animal" class="draggable">
+		<img crossOrigin = "annonymous" src="<%= itemone %>" id="itemone" class="draggable">
+		<img crossOrigin = "annonymous" src="<%= itemtwo %>" id="itemtwo" class="draggable">
 		
-<!-- 		<div class="voila" id="mainImg" style="background-image:url(<%= img %>)"></div>
-		<div class="voila" id="animal" style="background-image:url(<%= animal %>)"></div>
-		<div class="voila" id="itemone" style="background-image:url(<%= itemone %>)"></div>
-		<div class="voila" id="itemtwo" style="background-image:url(<%= itemtwo %>)"></div> -->
 	</div>
 </div>
 <% } %>
+
 
       </div>
     </div>

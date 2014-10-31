@@ -4,6 +4,14 @@
 <div class="container full">
   <div class="row">
      <div class="col-md-12 col-sm-12">
+
+     	<p>
+		<% if(message.length >0) { %>
+			<div class = "alert alert-danger">
+			<%= message %>
+			</div>
+		<% } %>
+	</p>
       
       <h1>Sign up</h1>
       

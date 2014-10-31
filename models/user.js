@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     username: {
       type: DataTypes.STRING,
       validate: {
-        len: [4, 30] //username must be 4-30 chars
+        len: [3, 30] //username must be 4-30 chars
       }
     },
     password: DataTypes.STRING
@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
             if(error) {
               console.log(error);
               if (error.name === "SequelizeValidationError") { //if username is not long enough
-                err({message: "Your username should be 4+ chars"});
+                err({message: "Your username should be 3 or more characters"});
               } else if (error.name === "SequelizeUniqueConstraintError") {
                 err({message: "Username is taken."});
               }

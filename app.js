@@ -206,7 +206,7 @@ app.post('/userimage', function(req, res, next) {
  			img: "http://i.imgur.com/gahqY6S.png"
   		}).done(function(err, image) {
    			req.user.addPhoto(image).done(function(err) {
-   				console.log("add successful.");
+   				console.log("? used. Add successful.");
    				var userid = req.user.id;
    				var imgid = image.id;
   				console.log("User id: "+userid + " img id: "+imgid);
@@ -340,5 +340,6 @@ function getItem(entry) {
 	}
 }
 
-app.listen(process.env.PORT || 300);
+app.listen(3000);
+// app.listen(process.env.PORT || 300);
 

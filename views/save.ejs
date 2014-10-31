@@ -1,12 +1,22 @@
 <% include partials/header %>
 
 <style>
-	#createdImage {
+  #createdImage {
     /*border: 11px solid red;*/
     z-index: 99999;
     /*position: absolute;*/
 }
 </style>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=565051076960106&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 <div id="wrapper">
   <!-- Sidebar -->
@@ -16,16 +26,16 @@
         <a href="#">
           <!-- sidebar header -->
         </a>
-		  </li>
-		  <li>
-		    <a href="/">Create new</a>
-		  </li>
-		  <li>
-		    <a href="/tada">View all</a>
-		  </li>
-		  <li>
-		    <a href="/logout">Log out</a>
-		</ul>
+      </li>
+      <li>
+        <a href="/">Create new</a>
+      </li>
+      <li>
+        <a href="/tada">View all</a>
+      </li>
+      <li>
+        <a href="/logout">Log out</a>
+    </ul>
   </div>
 
 <!-- /#sidebar-wrapper -->
@@ -40,10 +50,17 @@
 <h1>Voila</h1>
 </div>
 
-
 <% if (thisimg === null) { %> 
-	Sorry! Image not found.
+  Sorry! Image not found.
 <% } else { %>
+
+<a href="http://www.facebook.com/share.php?u=http://epicportrait.herokuapp.com">
+  <img src="http://i.imgur.com/R2xZymZ.png" class="sharebtn">
+</a>
+
+<div id="share"><img src="http://i.imgur.com/zAHxltg.png" class="sharebtn"></button>
+
+<a href="/tada/<%= thisimg.id %>" id="move"><img src="http://i.imgur.com/1BXvs44.png" class="sharebtn"></a>
 
 <% var background = thisimg.background %>
 <% var animal = thisimg.animal %>
@@ -52,15 +69,17 @@
 <% var img = thisimg.img %>
 
 <div id="jpger">
-	<div class="result">
-		<img crossOrigin = "annonymous" src="<%= background %>" id="background">
-		<img crossOrigin = "annonymous" src="<%= img %>" id="mainImg">
-		<img crossOrigin = "annonymous" src="<%= animal %>" id="animal">
-		<img crossOrigin = "annonymous" src="<%= itemone %>" id="itemone">
-		<img crossOrigin = "annonymous" src="<%= itemtwo %>" id="itemtwo">
-	</div>
+  <div class="result" id="result">
+    <img crossOrigin = "annonymous" src="<%= background %>" id="background">
+    <img crossOrigin = "annonymous" src="<%= img %>" id="mainImg">
+    <img crossOrigin = "annonymous" src="<%= animal %>" id="animal">
+    <img crossOrigin = "annonymous" src="<%= itemone %>" id="itemone">
+    <img crossOrigin = "annonymous" src="<%= itemtwo %>" id="itemtwo">
+    
+  </div>
 </div>
 <% } %>
+
 
       </div>
     </div>
