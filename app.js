@@ -208,7 +208,7 @@ app.get('/tada', function(req,res){
 			var len = otherIms.length;
 			//getting the other photos' creators
 			var otherUsers = [];
-			for (var i=len-1; i>len-5; i--) {
+			for (var i=len-1; i>len-6; i--) {
 				console.log("user in other ims is "+otherIms[i].UserId);
 				recentImages.push(otherIms[i]);
 			}
