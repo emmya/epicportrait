@@ -12,13 +12,13 @@
         </a>
 		  </li>
 		  <li>
-		    <a href="/">Create new</a>
+		    <a class="sdbar" href="/">Create new</a>
 		  </li>
 		  <li>
-		    <a href="/tada">View all</a>
+		    <a class="sdbar" href="/tada">View all</a>
 		  </li>
 		  <li>
-		    <a href="/logout">Log out</a>
+		    <a class="sdbar" href="/logout">Log out</a>
 		</ul>
   </div>
 
@@ -30,12 +30,12 @@
     <div class="row">
       <div class="col-lg-12">
 
-      <h1>Generate new image</h1>
+      <h1 id="headr">Generate new image</h1>
 <form action="/userimage" method="post" enctype="multipart/form-data" class="form-group">
 <div id="accordion">
  
 
-		<h3>Choose a background</h3>
+		<h3>1. Choose a background</h3>
 		<div id="pt1">
 		<input type="radio" name="backgroundpick" value="sunset" selected="true">Sunset<br>
 		<input type="radio" name="backgroundpick" value="sky">Sky<br>
@@ -43,7 +43,7 @@
 		<input type="radio" name="backgroundpick" value="space2">That Space<br>
 		</div>
 
-		<h3>Choose a spirit animal</h3>
+		<h3>2. Choose a spirit animal</h3>
 		<div id="pt2">
 		<input type="radio" name="animalpick" value="doge">Dog<br>
 		<input type="radio" name="animalpick" value="lion">Lion<br>
@@ -52,14 +52,14 @@
 		<input type="radio" name="animalpick" value="ron">Ron Swanson<br>
 		</div>
 
-		<h3>Choose a thing</h3>
+		<h3>3. Choose a symbol</h3>
 		<div id="pt3">
 		<input type="radio" name="itemone" value="bacon">Bacon<br>
 		<input type="radio" name="itemone" value="cards">Cards<br>
 		<input type="radio" name="itemone" value="rainbow">Rainbow<br>
 		</div>
 
-		<h3>Now another thing</h3>
+		<h3>4. Choose a talisman</h3>
 		<div id="pt4">
 		<input type="radio" name="itemtwo" value="buzz">Buzz Lightyear<br>
 		<input type="radio" name="itemtwo" value="football">Football<br>
@@ -70,7 +70,9 @@
 		<div id="pt5">
 		Upload a picture. For best results, use your most fabulous headshot. <br>
 		Bonus if the background is transparent. Make that happen <a href="https://clippingmagic.com/">here.</a>
+		<div id="uplod">
 		<input type="file" name="displayImage" class="upload">
+		</div>
 		<input type="submit" value="Generate Image" class="btn btn-primary generate">
 		</div>
 </div>

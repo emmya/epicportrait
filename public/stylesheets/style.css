@@ -11,12 +11,28 @@ h1 {
 	font-size: 20px;
 }
 
+.page-header:hover, #headr:hover {
+}
+#title {
+	/*margin-top: 30px;*/
+}
+#subtitle {
+	padding-top: 7px;
+	font-size: 10px;
+}
+.fadr {
+	margin: auto;
+}
+
 #accordion {
 	font-size: 11px;
 }
 
 #accordion>h3 {
 	font-size: 13px;
+}
+#accordion>h3:hover {
+	color: gray;
 }
 /*adjusting button defaults*/
 .btn {
@@ -51,15 +67,15 @@ h1 {
 	font-size: 15px;
 }
 /*login pages*/
-.full {
+#logg {
 	text-align: center;
-	margin-top: 20%;
+	margin-top: 10%;
 	padding-bottom: 20px;
-	background-color: rgba(0, 0, 0, .2)
+	background-color: rgba(0, 0, 0, .2);
 }
 /*result page buttons*/
 .resultbtn {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	color: black;
 }
 
@@ -70,7 +86,47 @@ h1 {
 .sharebtn {
 	width: 50px;
 	float: left;
-	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.sharebtn:hover {
+	opacity: .5;
+}
+/*space in results page*/
+#space {
+	width: 10px;
+	height: 30px;
+	clear: both;
+}
+/*choose file div*/
+#uplod {
+	padding: 5px;
+}
+#uplod:hover {
+	opacity: .5;
+}
+
+#signhead {
+	margin-top: 30px;
+}
+/*recents sidebar*/
+#reclabel {
+	font-size: 10px;
+	margin-bottom: -20px;
+	margin-left: 45px;
+}
+#recresult {
+	width: 60px;
+	height: 50px;
+	opacity: .7;
+	margin-top:2px;
+}
+#recresult:hover{
+	opacity: 1;
+}
+#rechead {
+	font-size: 15px;
+	margin-bottom: 0px;
 }
 
 /* =============== */
@@ -133,7 +189,7 @@ h1 {
 	    text-decoration: none;
 	    color: #999999;
 	}
-	.sidebar-nav li a:hover {
+	.sdbar:hover {
 	    text-decoration: none;
 	    color: #fff;
 	    background: rgba(255,255,255,0.2);
@@ -150,7 +206,7 @@ h1 {
 	.sidebar-nav > .sidebar-brand a {
 	    color: #999999;
 	}
-	.sidebar-nav > .sidebar-brand a:hover {
+	.sidebar-nav > .sdbar:hover {
 	    color: #fff;
 	    background: none;
 	}
@@ -191,6 +247,7 @@ h1 {
 	height: 500px;
 	width: 600px;
 	margin: 0 auto;
+
 }
 	#smell {
 		width: 100px;
@@ -241,4 +298,5 @@ h1 {
 	.canvas {
 		margin-left: 200px;
 		margin-bottom: 20px;
+		margin-top: -20px;
 	}

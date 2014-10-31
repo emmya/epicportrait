@@ -24,26 +24,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
 //JQUERY
 $(document).ready(function(){ 
 						   
-	console.log("Beginning JQuery");
+//===animations===
+
+$(".page-header").hide().fadeIn(1000);
+$("#headr").hide().fadeIn(1000);
+$("#accordion").hide().fadeIn(1000);
+$(".fadr").hide().fadeIn(500);
+
   //====Accordion====
 	$(function() {
 		$("#accordion").accordion({
 		});
     $("#pt1").on('click',function(e){
-      $("#pt1").fadeOut();
-      $("#pt2").fadeIn();
+      $("#pt1").slideUp();
+      $("#pt2").slideDown();
     });
     $("#pt2").on('click',function(e){
-      $("#pt2").fadeOut();
-      $("#pt3").fadeIn();
+      $("#pt2").slideUp();
+      $("#pt3").slideDown();
     });
     $("#pt3").on('click',function(e){
-      $("#pt3").fadeOut();
-      $("#pt4").fadeIn();
+      $("#pt3").slideUp();
+      $("#pt4").slideDown();
     });
     $("#pt4").on('click',function(e){
-      $("#pt4").fadeOut();
-      $("#pt5").fadeIn();
+      $("#pt4").slideUp();
+      $("#pt5").slideDown();
     });
     // 
   //=====Draggable images=====

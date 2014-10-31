@@ -221,14 +221,39 @@ app.post('/userimage', function(req, res, next) {
 app.get('/tada', function(req,res){
 	if (req.user) {
 		//getting all images that aren't the users
-		db.Photo.findAll({exclude: [db.User]}).done(function(err, allImages) {
+		db.Photo.findAll().done(function(err, allImages) {
+			console.log("img user id "+allImages[1].UserId);
+			console.log("user id "+req.user.id);
+			console.log("LENGTH IS "+allImages.length);
+			var otherIms = []; //images not belonging to user
+			for (var j=0; j<allImages.length; j++) {
+				console.log(allImages[j].UserId);
+				if (allImages[j].UserId != req.user.id) {
+					otherIms.push(allImages[j]);
+				}
+			}
+			var recentImages = [];
+			console.log("other ims is "+otherIms.length);
+			var len = otherIms.length;
+			//getting the other photos' creators
+			var otherUsers = [];
+			for (var i=len-1; i>len-5; i--) {
+				console.log("user in other ims is "+otherIms[i].UserId);
+				//=====attempting to get the user of the other images====
+				// db.User.find(otherIms[i].UserId).done(function(err, thisuser) {
+				// 		console.log("JJDJSJ"+thisuser.username);
+				// 		otherUsers.push(thisuser.username);
+				// 		console.log("???"+otherUsers[0]);
+				// 	});
+				recentImages.push(otherIms[i]);
+			}
+
 			//getting all of the user's images
 			req.user.getPhotos().done(function(err, images) {
-				console.log("ALL IMS "+allImages[0].background);
-				console.log("YOUR IMS "+images[0].background);
 				res.render("tada", {
 					images: images,
-					allImages: allImages
+					recentImages: recentImages,
+					recentUsers: otherUsers
 				});
 			});
 		});
@@ -240,14 +265,32 @@ app.get('/tada', function(req,res){
 //Results page. Passes 'thisimage' to page.
 app.get('/tada/:imgid', function(req,res){
 	if (req.user) {
+		var isOwner = false;
 		var imgid = req.params.imgid;
+		var otherOwner = "";
 		console.log(req.params);
 		db.Photo.find(imgid).done(function(err, thisimg) {
-			res.header("Access-Control-Allow-Origin", "*");
-  		res.header("Access-Control-Allow-Headers", "Origin, CORS, X-Requested-With, Content-Type, Accept");
-			res.render("result", {
-				thisimg: thisimg
+			if (thisimg.UserId === req.user.id) {
+				isOwner = true;
+				res.header("Access-Control-Allow-Origin", "*");
+  			res.header("Access-Control-Allow-Headers", "Origin, CORS, X-Requested-With, Content-Type, Accept");
+				res.render("result", {
+				thisimg: thisimg, isOwner: isOwner
 			});
+		} else {
+				db.User.find(thisimg.UserId).done(function(err, thisuser) {
+					console.log("OWNER???? "+isOwner);
+					otherOwner = thisuser.username;
+					console.log("username found!!! "+otherOwner);
+					res.header("Access-Control-Allow-Origin", "*");
+		  		res.header("Access-Control-Allow-Headers", "Origin, CORS, X-Requested-With, Content-Type, Accept");
+					res.render("result", {
+						thisimg: thisimg, 
+						isOwner: isOwner,
+						otherOwner: otherOwner
+					});
+				});
+			}
 		});
 	} else {
 		res.render("login/login", {message:req.flash('loginMessage'), username: req.session.username}); 
@@ -340,6 +383,6 @@ function getItem(entry) {
 	}
 }
 
-// app.listen(3000);
-app.listen(process.env.PORT || 300);
+app.listen(3000);
+// app.listen(process.env.PORT || 300);
 

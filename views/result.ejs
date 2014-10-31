@@ -28,13 +28,13 @@
         </a>
 		  </li>
 		  <li>
-		    <a href="/">Create new</a>
-		  </li>
-		  <li>
-		    <a href="/tada">View all</a>
-		  </li>
-		  <li>
-		    <a href="/logout">Log out</a>
+		    <a class="sdbar" href="/">Create new</a>
+      </li>
+      <li>
+        <a class="sdbar" href="/tada">View all</a>
+      </li>
+      <li>
+        <a class="sdbar" href="/logout">Log out</a>
 		</ul>
   </div>
 
@@ -51,23 +51,27 @@
 </div>
 
 <% if (thisimg === null) { %> 
-	Sorry! Image not found.
+	Sorry! Portrait not found.
 <% } else { %>
 
+<!-- share buttons -->
+<% if (isOwner) { %>
 <a href="http://www.facebook.com/share.php?u=http://epicportrait.herokuapp.com">
-	<img src="http://i.imgur.com/R2xZymZ.png" class="sharebtn">
-</a>
-
+	<img src="http://i.imgur.com/R2xZymZ.png" class="sharebtn"></a>
 <div id="share" id="move"><img src="http://i.imgur.com/zAHxltg.png" class="sharebtn"></div>
-
 <div id="move"><img src="http://i.imgur.com/1BXvs44.png" class="sharebtn"></div>
-
+<div id="space"></div>
+<% } else { %>
+<h5>Created by: <%= otherOwner %></h5>
+<% } %>
+<!-- getting img data -->
 <% var background = thisimg.background %>
 <% var animal = thisimg.animal %>
 <% var itemone = thisimg.itemone %>
 <% var itemtwo = thisimg.itemtwo %>
 <% var img = thisimg.img %>
 
+<!-- rendered img -->
 <div id="jpger">
 	<div class="result" id="result">
 		<img crossOrigin = "annonymous" src="<%= background %>" id="background" class="draggable">

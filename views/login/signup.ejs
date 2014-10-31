@@ -1,19 +1,19 @@
 <% include ../partials/header %>
 
 
-<div class="container full">
-  <div class="row">
+<div class="container full slidr" id="logg">
+  <div class="row fadr">
      <div class="col-md-12 col-sm-12">
 
      	<p>
-		<% if(message.length >0) { %>
+		<% if(message != null) { %>
 			<div class = "alert alert-danger">
 			<%= message %>
 			</div>
 		<% } %>
 	</p>
       
-      <h1>Sign up</h1>
+      <h1 id="signhead">Sign up</h1>
       
       <form action="/signup" method="POST">
 				<p>

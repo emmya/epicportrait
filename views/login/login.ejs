@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 
-<div class="container full">
+<div class="container full slidr" id="logg">
 
 	<p>
 		<% if(message.length >0) { %>
@@ -11,9 +11,9 @@
 	</p>
 
 
-  <div class="row">
+  <div class="row fadr">
     <div class="col-md-12 col-sm-12">
-      <h1>Log in</h1>
+      <h1 id="loghead">Log in</h1>
 			
 			<form action="/login" method="POST">
 			<p>
