@@ -11,6 +11,12 @@ h1 {
 	font-size: 20px;
 }
 
+#vanity {
+	float: right;
+	margin-bottom: -10px;
+	color: white;
+}
+
 .page-header:hover, #headr:hover {
 }
 #title {

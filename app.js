@@ -62,7 +62,7 @@ app.get('/', function(req,res){
 	if (!req.user) {  //IF NOT LOGGED IN
 		res.render("login/index", {message:null}); //message will be the result of the user callbacks
 	} else { //REDIRECTS TO HOME IF ALREADY LOGGED IN
-		res.redirect('/home');
+		res.redirect('/tada');
 	}
 });
 
@@ -71,7 +71,7 @@ app.get('/signup', function(req,res){
 	if (!req.user) {
 		res.render("login/signup", {message:null, username:""}); 
 	} else {
-		res.redirect('/home');
+		res.redirect('/tada');
 	}
 });
 
@@ -94,13 +94,13 @@ app.get('/login', function(req,res){
 	if (!req.user) {
 		res.render("login/login", {message:req.flash('loginMessage'), username: req.session.username}); 
 	} else {
-		res.redirect('/home');
+		res.redirect('/tada');
 	}
 });
 
 //Login post (using passport)
 app.post('/login', passport.authenticate('local', {
-	successRedirect: '/home', //second param is if success
+	successRedirect: '/tada', //second param is if success
 	failureRedirect: '/login', //third is if failure
 	failureFlash: true //lets render flash messages when there are failures
 })); //if success, have an object called rec.user.
