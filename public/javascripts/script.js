@@ -26,10 +26,10 @@ $(document).ready(function(){
 						   
 //===animations===
 
-$(".page-header").hide().fadeIn(1000);
-$("#headr").hide().fadeIn(1000);
-$("#accordion").hide().fadeIn(1000);
-$(".fadr").hide().fadeIn(500);
+// $(".page-header").hide().fadeIn(1000);
+// $("#headr").hide().fadeIn(1000);
+// $("#accordion").hide().fadeIn(1000);
+// $(".fadr").hide().fadeIn(500);
 
   //====Accordion====
 	$(function() {
