@@ -305,6 +305,8 @@ function getBackground(entry) {
 		return "http://i.imgur.com/qcE2lmf.jpg";
 	} else if (entry === "space2") {
 		return "http://i.imgur.com/np9MjPh.jpg";
+	} else if (entry === "vista") {
+		return "http://i.imgur.com/Y3FrAr1.jpg";
 	} else {
 		return "http://i.imgur.com/2YhTlKD.jpg";
 	}
@@ -315,15 +317,15 @@ function getAnimal(entry) {
 		console.log("lion");
 		return "http://i.imgur.com/5RSkZSc.png";
 	} else if (entry === "doge") {
-		console.log("dog!");
 		return "http://i.imgur.com/sXS9i0Q.png";
 	} else if (entry === "horse") {
-		console.log("HELLO HORSE!!");
 		return "http://i.imgur.com/NefZofo.png";
 	} else if (entry === "cat") {
 		return "http://i.imgur.com/aoB4sUZ.png";
 	} else if (entry === "ron") {
 		return "http://i.imgur.com/9UVxH3Q.png";
+	} else if (entry === "giraffe") {
+		return "http://i.imgur.com/pGpxrUy.png";
 	} else {
 		return "http://i.imgur.com/gahqY6S.png";
 	}
@@ -336,12 +338,18 @@ function getItem(entry) {
 		return "http://i.imgur.com/ovFs6VV.png";
 	} else if (entry === "buzz") {
 		return "http://i.imgur.com/YahIj8m.png";
+	} else if (entry ==="cassette") {
+		return "http://i.imgur.com/nWDtYpU.png";
 	} else if (entry === "football") {
 		return "http://i.imgur.com/DJ9HZQs.png";
 	} else if (entry === "rainbow") {
 		return "http://i.imgur.com/JjfpiTc.png";
 	} else if (entry === "martini") {
 		return "http://i.imgur.com/fslbZAU.png";
+	} else if (entry === "jesus") {
+		return "http://i.imgur.com/OyAdifg.png";
+	} else if (entry === "xbox") {
+		return "http://i.imgur.com/ILnDe9d.png";
 	} else {
 		return "http://i.imgur.com/gahqY6S.png";
 	}
