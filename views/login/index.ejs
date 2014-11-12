@@ -1,31 +1,63 @@
 <% include ../partials/header %>
-
+<style>
+body {
+  background-color: rgba(0, 0, 0, .2);
+}
+</style>
 <!-- <div class="page-header">
 <h1></h1>
 </div> -->
 
-<div class="container full" id="logg">
+<div id="fullscreen">
 
-	<p>
-		<% if(message) { %>
-			<%= message %>
-		<% } %>
-	</p>
+  <p>
+    <% if(message) { %>
+      <%= message %>
+    <% } %>
+  </p>
+
+<h1 id="title">Epic Portrait Generator</h1>
+<a href="/signup" id="indexbutton" class="btn btn-primary btn-lg">Sign up</a>
+<a href="/login" id="indexbutton" class="btn btn-primary btn-lg">Log in</a>
+<br>
+
+  <div class="row demo">
+<!--     <div class="col-md-4"> -->
+      <img class="lowbar" src="http://i.imgur.com/JiJf6lX.png">
+<!--     </div> -->
+<!--     <div class="col-md-4"> -->
+      <img class="lowbar" src="http://i.imgur.com/3y511LZ.png">
+<!--     </div> -->
+<!--       <img class="lowbar" src="http://i.imgur.com/nEUFRSt.png"> -->
+<!--     <div class="col-md-4"> -->
+      <img class="lowbar" src="http://i.imgur.com/XZXmOAv.png">
+      <img class="lowbar" src="http://i.imgur.com/fEgVALS.png">
+      <img class="lowbar" src="http://i.imgur.com/YMcbjHq.png">
+      <span class="stretch">
+    </div>
+
+  </div>
+
+</div>
 
 
-  <div class="row fadr">
+
+
+<!-- <div class="container full" id="logg">
+
+
+  <div class="row fadr ">
     <div class="col-md-12 col-sm-12">
       <h1 id="title">Epic Portrait Generator</h1>
       <a href="/signup" class="btn btn-primary btn-lg">Sign up</a>
-			<a href="/login" class="btn btn-primary btn-lg">Log in</a>
+      <a href="/login" class="btn btn-primary btn-lg">Log in</a>
       <br>
       <p id="subtitle">Impress Your Friends</p>
+      <p id="vanity">A web app by Emmy</p>
     </div>
-    <p id="vanity">A web app by Emmy</p>
-  </div>
+  </div> -->
 
   
   <!-- /.row -->
 </div>
-
 <% include ../partials/footer %>

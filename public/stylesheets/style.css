@@ -3,29 +3,78 @@
 /* =============== */
 
 body {
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 12px;
-}
-h1 {
-	font-family: 'Fjalla One', sans-serif;
-	font-size: 20px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   min-width: 620px;
+   margin: 0px;
+   padding: 0px;
+   background-color: black;
+   color: white;
 }
 
-#vanity {
-	float: right;
-	margin-bottom: -10px;
+#title {
+	font-size: 60px;
+	padding-top: 50px;
 	color: white;
 }
 
-.page-header:hover, #headr:hover {
+header {
+	text-align: center;
+	background-color: white;
 }
-#title {
-	/*margin-top: 30px;*/
+
+input {
+	color: black;
+	margin-left: 6px;
 }
-#subtitle {
-	padding-top: 7px;
-	font-size: 10px;
+
+#fullscreen {
+	background-color: black;
+	height: 100vh;
+	text-align: center;
+	color: white;
+	margin: -20px;
+	padding: 0;
 }
+
+/*#soon {
+	float: left;
+}*/
+
+.demo {
+	margin-top: 50vh;
+	height: 80px;
+	text-align: justify;
+   -ms-text-justify: distribute-all-lines;
+   text-justify: distribute-all-lines;
+   margin-left: 40px;
+   margin-right: 40px;
+}
+.lowbar {
+	width: 110px;
+	height: 90px;
+	vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1c
+}
+
+.lowbar:hover {
+	opacity: .8;
+}
+.stretch {
+	width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+#indexbutton {
+	width: 100px;
+	height: 40px;
+	font-size: 22px;
+}
+
 .fadr {
 	margin: auto;
 }
@@ -47,8 +96,11 @@ h1 {
 	margin: 0px 2px 0px 2px;
 }
 .btn-primary {
-	background-color: purple;
+	background-color: gray;
 	border: black;
+}
+.btn-primary:hover {
+	background-color: #CC66FF;
 }
 /*thumbnail*/
 .tnail {
@@ -77,7 +129,7 @@ h1 {
 	text-align: center;
 	margin-top: 10%;
 	padding-bottom: 20px;
-	background-color: rgba(0, 0, 0, .2);
+	max-width: 400px;
 }
 /*result page buttons*/
 .resultbtn {
